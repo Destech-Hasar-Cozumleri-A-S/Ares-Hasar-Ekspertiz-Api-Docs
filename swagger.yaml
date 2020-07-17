@@ -1,69 +1,69 @@
 ---
 swagger: "2.0"
+openapi: 3.0.0
 info:
-  version: "1.0.0"
   title: ARES Hasar Ekspertiz
   contact:
     email: destek@destechhasar.com
-servers: [url: https://ares.rsservis.com.tr/ios_tablet_hasarv4_test]
-schemes:
-  - "https"
+  version: 1.0.0
+servers:
+  - url: https://ares.rsservis.com.tr/ios_tablet_hasarv4_test
 paths:
   /Login:
     post:
       tags:
         - Login User
       summary: Kullanıcı login servisi
-      operationId: Login
       description: Kullanıcıyın login eder ve bilgilerini döner
-      responses:
-        "200":
-          description: Status Ok
+      operationId: Login
       requestBody:
+        description: Login Ol
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/Login"
-        description: Login Ol
+      responses:
+        "200":
+          description: Status Ok
   /SetHasarEkspertiz:
     post:
       tags:
         - Hasar Ekspertiz
       summary: Hasar Ekspertiz Kaydı
-      operationId: SetHasarEkspertiz
       description: Hasar ekspertiz bilgilerini kaydeder
-      responses:
-        "200":
-          description: Status Ok
+      operationId: SetHasarEkspertiz
       requestBody:
+        description: Hasar Ekspertiz Kaydı
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/SetHasarEkspertiz"
-        description: Hasar Ekspertiz Kaydı
+      responses:
+        "200":
+          description: Status Ok
   /ihaleyeCik:
     post:
       tags:
         - Parçaları İhaleye Çık
       summary: Parçaları ihaleye çıkarır
-      operationId: ihaleyeCik
       description: Parçaları ihaleye çıkarır
-      responses:
-        "200":
-          description: Status Ok
+      operationId: ihaleyeCik
       requestBody:
+        description: İhaleye Çık
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/ihaleyeCik"
-        description: İhaleye Çık
+      responses:
+        "200":
+          description: Status Ok
 components:
   schemas:
     Login:
-      type: object
       required:
         - Kullanici
         - Sifre
+      type: object
       properties:
         Kullanici:
           type: string
@@ -71,53 +71,53 @@ components:
         Sifre:
           type: string
           format: password
-          example: 12345
+          example: "12345"
     SetHasarEkspertiz:
-      type: object
       required:
         - AutHeader
         - OnarimNo
+      type: object
       properties:
         AutHeader:
           type: string
           example: uhmre1pbi78e6fnj9olvq9c5fm
         OnarimNo:
           type: string
-          example: 688472
+          example: "688472"
         HasarEkspertizBilgileri:
           type: array
           items:
             $ref: "#/components/schemas/hasarEkspertizBilgileri"
     ihaleyeCik:
-      type: object
       required:
-        - islem_ref_no
         - ihale_parcalar
+        - islem_ref_no
+      type: object
       properties:
         islem_ref_no:
           type: string
-          example: 688472
+          example: "688472"
         ihale_parcalar:
           type: array
           items:
             $ref: "#/components/schemas/ihale_parcalar"
     ihale_parcalar:
-      type: object
       required:
-        - parca_ref_no
         - adet
+        - parca_ref_no
+      type: object
       properties:
         parca_ref_no:
           type: string
-          example: 688472
+          example: "688472"
         adet:
           type: integer
           example: 1
     hasarEkspertizBilgileri:
-      type: object
       required:
-        - parca_ref_no
         - adet
+        - parca_ref_no
+      type: object
       properties:
         ParcaGrubu:
           type: string
@@ -127,67 +127,67 @@ components:
           example: Ön Tampon
         IsSiraNo:
           type: string
-          example: 1
+          example: "1"
         Aciklama:
           type: string
           example: Kırılmış değişim gerekli
         OnarimTipi:
           type: string
-          example: 0
+          example: "0"
         MontajTipi:
           type: string
-          example: 0
+          example: "0"
         MontajTuruEski:
           type: string
-          example: 0
+          example: "0"
         BoyaTipi:
           type: string
-          example: 0
+          example: "0"
         OnarimTutar:
           type: string
-          example: 150.0
+          example: "150"
         BoyaTutar:
           type: string
-          example: 170.0
+          example: "170"
         BagliParcaSiraNo:
           type: string
-          example: 2
+          example: "2"
         OnckMontajTuruRefNo:
           type: string
-          example: 123
+          example: "123"
         ParcaKodu:
           type: string
-          example: 4452
+          example: "4452"
         ParcaTutar:
           type: string
-          example: 120.5
+          example: "120.5"
         parcaAdedi:
           type: string
-          example: 2
+          example: "2"
         kprtFyt:
           type: string
-          example: 170.0
+          example: "170"
         mknkFyt:
           type: string
-          example: 170.0
+          example: "170"
         elktFyt:
           type: string
-          example: 170.0
+          example: "170"
         dsKlFyt:
           type: string
-          example: 170.0
+          example: "170"
         camFyt:
           type: string
-          example: 170.0
+          example: "170"
         PbFatura:
           type: string
-          example: 2
+          example: "2"
         PbKayitId:
           type: string
-          example: 232
+          example: "232"
         PbParcaID:
           type: string
-          example: 2
+          example: "2"
         PbParcaTuru:
           type: string
-          example: 3
+          example: "3"
