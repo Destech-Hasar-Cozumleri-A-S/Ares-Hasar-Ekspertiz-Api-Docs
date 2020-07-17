@@ -1,10 +1,11 @@
 <!-- HTML for static distribution bundle build -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
 <head>
   <meta charset="UTF-8">
   <title>ARES Hasar Ekspertiz</title>
+  <link rel="stylesheet" type="text/css" href="dist/swagger-ui.css">
   <style>
     html {
       box-sizing: border-box;
@@ -36,10 +37,9 @@
       const ui = SwaggerUIBundle({
         url: "swagger.yaml",
         dom_id: '#swagger-ui',
-        deepLinking: true,
         presets: [
           SwaggerUIBundle.presets.apis,
-          SwaggerUIStandalonePreset
+          SwaggerUIBundle.SwaggerUIStandalonePreset
         ],
         plugins: [
           SwaggerUIBundle.plugins.DownloadUrl
