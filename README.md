@@ -1,3 +1,3 @@
-# How to host Swagger API documentation with GitHub Pages
+# ARES Türkiye
 
 Ares Hasar Ekspertiz Api Dökümanı
