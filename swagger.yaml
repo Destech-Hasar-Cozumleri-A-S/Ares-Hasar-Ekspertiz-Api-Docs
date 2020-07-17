@@ -15,15 +15,14 @@ paths:
       tags:
         - Login User
       summary: Kullanıcı login servisi
-      description: Kullanıcıyın login eder ve bilgilerini döner
       operationId: Login
-      consumes:
-        - "application/json"
-        produces:
-        - "application/json"
+      description: Kullanıcıyın login eder ve bilgilerini döner
       parameters:
-        schema:
-          $ref: "#/components/schemas/Login"
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/Login"
       responses:
         "200":
           description: Status Ok
@@ -32,14 +31,14 @@ paths:
       tags:
         - Hasar Ekspertiz
       summary: Hasar Ekspertiz Kaydı
-      description: Hasar ekspertiz bilgilerini kaydeder
       operationId: SetHasarEkspertiz
-      requestBody:
-        description: Hasar Ekspertiz Kaydı
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/SetHasarEkspertiz"
+      description: Hasar ekspertiz bilgilerini kaydeder
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/SetHasarEkspertiz"
       responses:
         "200":
           description: Status Ok
@@ -48,148 +47,147 @@ paths:
       tags:
         - Parçaları İhaleye Çık
       summary: Parçaları ihaleye çıkarır
-      description: Parçaları ihaleye çıkarır
       operationId: ihaleyeCik
-      requestBody:
-        description: İhaleye Çık
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ihaleyeCik"
+      description: Parçaları ihaleye çıkarır
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/ihaleyeCik"
       responses:
         "200":
           description: Status Ok
-components:
-  schemas:
-    Login:
-      required:
-        - Kullanici
-        - Sifre
-      type: object
-      properties:
-        Kullanici:
-          type: string
-          example: testkullanici
-        Sifre:
-          type: string
-          format: password
-          example: "12345"
-    SetHasarEkspertiz:
-      required:
-        - AutHeader
-        - OnarimNo
-      type: object
-      properties:
-        AutHeader:
-          type: string
-          example: uhmre1pbi78e6fnj9olvq9c5fm
-        OnarimNo:
-          type: string
-          example: "688472"
-        HasarEkspertizBilgileri:
-          type: array
-          items:
-            $ref: "#/components/schemas/hasarEkspertizBilgileri"
-    ihaleyeCik:
-      required:
-        - ihale_parcalar
-        - islem_ref_no
-      type: object
-      properties:
-        islem_ref_no:
-          type: string
-          example: "688472"
-        ihale_parcalar:
-          type: array
-          items:
-            $ref: "#/components/schemas/ihale_parcalar"
-    ihale_parcalar:
-      required:
-        - adet
-        - parca_ref_no
-      type: object
-      properties:
-        parca_ref_no:
-          type: string
-          example: "688472"
-        adet:
-          type: integer
-          example: 1
-    hasarEkspertizBilgileri:
-      required:
-        - adet
-        - parca_ref_no
-      type: object
-      properties:
-        ParcaGrubu:
-          type: string
-          example: Ön Tampon Grubu
-        ParcaAdi:
-          type: string
-          example: Ön Tampon
-        IsSiraNo:
-          type: string
-          example: "1"
-        Aciklama:
-          type: string
-          example: Kırılmış değişim gerekli
-        OnarimTipi:
-          type: string
-          example: "0"
-        MontajTipi:
-          type: string
-          example: "0"
-        MontajTuruEski:
-          type: string
-          example: "0"
-        BoyaTipi:
-          type: string
-          example: "0"
-        OnarimTutar:
-          type: string
-          example: "150"
-        BoyaTutar:
-          type: string
-          example: "170"
-        BagliParcaSiraNo:
-          type: string
-          example: "2"
-        OnckMontajTuruRefNo:
-          type: string
-          example: "123"
-        ParcaKodu:
-          type: string
-          example: "4452"
-        ParcaTutar:
-          type: string
-          example: "120.5"
-        parcaAdedi:
-          type: string
-          example: "2"
-        kprtFyt:
-          type: string
-          example: "170"
-        mknkFyt:
-          type: string
-          example: "170"
-        elktFyt:
-          type: string
-          example: "170"
-        dsKlFyt:
-          type: string
-          example: "170"
-        camFyt:
-          type: string
-          example: "170"
-        PbFatura:
-          type: string
-          example: "2"
-        PbKayitId:
-          type: string
-          example: "232"
-        PbParcaID:
-          type: string
-          example: "2"
-        PbParcaTuru:
-          type: string
-          example: "3"
+definitions:
+  Login:
+    type: object
+    required:
+      - Kullanici
+      - Sifre
+    properties:
+      Kullanici:
+        type: string
+        example: testkullanici
+      Sifre:
+        type: string
+        format: password
+        example: 12345
+  SetHasarEkspertiz:
+    type: object
+    required:
+      - AutHeader
+      - OnarimNo
+    properties:
+      AutHeader:
+        type: string
+        example: uhmre1pbi78e6fnj9olvq9c5fm
+      OnarimNo:
+        type: string
+        example: 688472
+      HasarEkspertizBilgileri:
+        type: array
+        items:
+          $ref: "#/definitions/hasarEkspertizBilgileri"
+  ihaleyeCik:
+    type: object
+    required:
+      - islem_ref_no
+      - ihale_parcalar
+    properties:
+      islem_ref_no:
+        type: string
+        example: 688472
+      ihale_parcalar:
+        type: array
+        items:
+          $ref: "#/definitions/ihale_parcalar"
+  ihale_parcalar:
+    type: object
+    required:
+      - parca_ref_no
+      - adet
+    properties:
+      parca_ref_no:
+        type: string
+        example: 688472
+      adet:
+        type: integer
+        example: 1
+  hasarEkspertizBilgileri:
+    type: object
+    required:
+      - parca_ref_no
+      - adet
+    properties:
+      ParcaGrubu:
+        type: string
+        example: Ön Tampon Grubu
+      ParcaAdi:
+        type: string
+        example: Ön Tampon
+      IsSiraNo:
+        type: string
+        example: 1
+      Aciklama:
+        type: string
+        example: Kırılmış değişim gerekli
+      OnarimTipi:
+        type: string
+        example: 0
+      MontajTipi:
+        type: string
+        example: 0
+      MontajTuruEski:
+        type: string
+        example: 0
+      BoyaTipi:
+        type: string
+        example: 0
+      OnarimTutar:
+        type: string
+        example: 150.0
+      BoyaTutar:
+        type: string
+        example: 170.0
+      BagliParcaSiraNo:
+        type: string
+        example: 2
+      OnckMontajTuruRefNo:
+        type: string
+        example: 123
+      ParcaKodu:
+        type: string
+        example: 4452
+      ParcaTutar:
+        type: string
+        example: 120.5
+      parcaAdedi:
+        type: string
+        example: 2
+      kprtFyt:
+        type: string
+        example: 170.0
+      mknkFyt:
+        type: string
+        example: 170.0
+      elktFyt:
+        type: string
+        example: 170.0
+      dsKlFyt:
+        type: string
+        example: 170.0
+      camFyt:
+        type: string
+        example: 170.0
+      PbFatura:
+        type: string
+        example: 2
+      PbKayitId:
+        type: string
+        example: 232
+      PbParcaID:
+        type: string
+        example: 2
+      PbParcaTuru:
+        type: string
+        example: 3
