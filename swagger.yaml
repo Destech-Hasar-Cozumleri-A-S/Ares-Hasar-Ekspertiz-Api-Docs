@@ -1,13 +1,14 @@
 ---
-swagger: "2.0"
-openapi: 3.0.0
+swagger: "3.0"
 info:
   title: ARES Hasar Ekspertiz
   contact:
     email: destek@destechhasar.com
   version: 1.0.0
-servers:
-  - url: https://ares.rsservis.com.tr/ios_tablet_hasarv4_test
+host: "https://ares.rsservis.com.tr"
+basePath: "/ios_tablet_hasarv4_test"
+schemes:
+  - "https"
 paths:
   /Login:
     post:
@@ -16,12 +17,13 @@ paths:
       summary: Kullanıcı login servisi
       description: Kullanıcıyın login eder ve bilgilerini döner
       operationId: Login
-      requestBody:
-        description: Login Ol
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Login"
+      consumes:
+        - "application/json"
+        produces:
+        - "application/json"
+      parameters:
+        schema:
+          $ref: "#/components/schemas/Login"
       responses:
         "200":
           description: Status Ok
